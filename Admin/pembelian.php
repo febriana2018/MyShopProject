@@ -6,6 +6,7 @@
             <th> No </th>
             <th> Nama Pelanggan </th>
             <th> Tanggal </th>
+            <th> Status Pembelian </th>
             <th> Total </th>    
             <th> Aksi </th>
         </tr>
@@ -19,9 +20,14 @@
             <td><?php echo $no; ?> </td>
             <td><?php echo $detail['nama_pelanggan']; ?></td>
             <td><?php echo $detail['tanggal_pembelian']; ?></td>
+            <td><?php echo $detail['status_pembelian']; ?></td>
             <td><?php echo $detail['total_pembelian']; ?></td>    
             <td> 
                 <a href="index.php?halaman=detail&id=<?php echo $detail['id_pembelian']; ?>"  class="btn btn-info"> Detail </a>
+
+                <?php if($detail['status_pembelian']!=="pending"): ?>
+                <a href="index.php?halaman=pembayaran&id=<?php echo $detail['id_pembelian'] ?>" class="btn btn-success">Lihat Pembayaran</a>
+                <?php endif ?>
             </td>
         </tr>
         <?php $no++ ?>

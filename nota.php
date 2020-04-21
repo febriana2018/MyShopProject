@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'koneksi.php';
+include 'menu.php';
 
 ?>
 
@@ -13,31 +14,6 @@ include 'koneksi.php';
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="keranjang.php">Keranjang</a>
-      </li>
-      <?php if (isset($_SESSION['pelanggan'])): ?>
-          <li class="nav-item">
-          <a class="nav-link" href="logout.php">Logout</a>
-        </li>
-        <?php else : ?>
-      <li class="nav-item">
-        <a class="nav-link" href="login.php">Login</a>
-      </li>
-      <?php endif ?>
-      <li class="nav-item">
-        <a class="nav-link" href="checkout.php">Checkout</a>
-      </li>      
-    </ul>
-  </div>
-</nav>
-
 <section class="konten">
     <div class="container">
     <h2> Detail Pembelian </h2>
@@ -47,6 +23,17 @@ $ambil = $koneksi->query("SELECT * FROM pembelian JOIN pelanggan
 ON pembelian.id_pelanggan = pelanggan.id_pelanggan
 WHERE pembelian.id_pembelian = '$_GET[id]'");
 $detail = $ambil->fetch_assoc();
+?>
+
+<?php
+$id_buy=$detail['id_pelanggan'];
+$id_login=$_SESSION["pelanggan"]['id_pelanggan'];
+
+if($id_buy!==$id_login)
+{
+  echo "<script>location='riwayat.php';</script>";
+  exit();
+}
 ?>
 
 <strong> <?php echo $detail['nama_pelanggan']; ?> </strong> <hr>

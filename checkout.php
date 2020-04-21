@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'koneksi.php';
+include 'menu.php';
 
 if (empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"])) {
     echo "<script>alert ('Keranjang kosong. Silahkan belanja dulu!')</script>";
@@ -23,32 +24,6 @@ if (!isset($_SESSION['pelanggan'])) {
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="keranjang.php">Keranjang</a>
-      </li>
-      <?php if (isset($_SESSION['pelanggan'])): ?>
-          <li class="nav-item">
-          <a class="nav-link" href="logout.php">Logout</a>
-        </li>
-        <?php else : ?>
-      <li class="nav-item">
-        <a class="nav-link" href="login.php">Login</a>
-      </li>
-      <?php endif ?>
-      <li class="nav-item">
-        <a class="nav-link" href="checkout.php">Checkout</a>
-      </li>      
-    </ul>
-  </div>
-</nav>
-
-
 <section class="konten">
 <div class="container">
         <h1> Checkout Produk </h1>
@@ -157,11 +132,14 @@ if (!isset($_SESSION['pelanggan'])) {
                     $koneksi->query("INSERT INTO pembelian_produk (id_pembelian,id_produk,jumlah, nama, harga, berat, subberat, subharga)
                     VALUES ('$id_beli', '$id_produk','$jumlah', '$nama', '$harga', '$berat', '$subberat', '$subharga')");
 
+                    $koneksi->query("UPDATE produk SET stok_produk=stok_produk - $jumlah
+                        WHERE id_produk='$id_produk'");
+                }
                 unset($_SESSION["keranjang"]);
 
                 echo "<script>alert ('Pembelian sukses')</script>";
                 echo "<script>location='nota.php?id=$id_beli'</script>";
-                }
+                
             }
         ?>
 

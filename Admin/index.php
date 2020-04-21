@@ -133,6 +133,9 @@ if (!isset($_SESSION['admin'])) {
             else if ($_GET['halaman']=="logout") {
               include 'logout.php';
             }
+            else if($_GET['halaman']=="pembayaran"){
+              include 'pembayaran.php';
+            }
           }else{
             include 'home.php';
           }

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'koneksi.php';
+include 'menu.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,33 +13,6 @@ include 'koneksi.php';
 </head>
 
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="keranjang.php">Keranjang</a>
-      </li>
-      <?php if (isset($_SESSION['pelanggan'])): ?>
-          <li class="nav-item">
-          <a class="nav-link" href="logout.php">Logout</a>
-        </li>
-        <?php else : ?>
-      <li class="nav-item">
-        <a class="nav-link" href="login.php">Login</a>
-      </li>
-      <?php endif ?>
-      <li class="nav-item">
-        <a class="nav-link" href="checkout.php">Checkout</a>
-      </li>      
-    </ul>
-  </div>
-</nav>
-
-
 <div class="container">
         <h1> Produk Terbaru </h1>
 
@@ -78,7 +52,15 @@ if(isset($_POST['simpan'])){
         if ($cek==1) {
             $_SESSION['pelanggan']=$data->fetch_assoc();
             echo "<div class='alert alert-info'>Login Sukses</div>";
-            echo "<script>location='checkout.php'</script>";
+            
+            if(isset($_SESSION["keranjang"]) OR !empty($_SESSION["keranjang"]))
+            {
+              echo "<script>location='checkout.php'</script>";
+            }
+            else
+            {
+              echo "<script>location='riwayat.php';</script>";
+            }
         }else {
             echo "<div class='alert alert-danger'>Login Gagal</div>";
             echo "<script>location='login.php'</script>";
