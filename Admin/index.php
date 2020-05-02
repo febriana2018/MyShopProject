@@ -19,7 +19,7 @@ if (!isset($_SESSION['admin'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Febri's Shop</title>
+  <title>DFZ's Shop</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,6 +27,8 @@ if (!isset($_SESSION['admin'])) {
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+  <script src="vendor/jquery/jquery.min.js"></script>
 
 </head>
 
@@ -52,15 +54,23 @@ if (!isset($_SESSION['admin'])) {
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link" href="index.php">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fa fa-dashboard"></i>
           <span>Home</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
       <li class="nav-item active">
+        <a class="nav-link" href="index.php?halaman=kategori">
+          <i class="fa fa-cube"></i>
+          <span>Kategori</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      <li class="nav-item active">
         <a class="nav-link" href="index.php?halaman=produk">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fa fa-cube"></i>
           <span>Produk</span></a>
       </li>
 
@@ -69,22 +79,31 @@ if (!isset($_SESSION['admin'])) {
 
       <li class="nav-item active">
         <a class="nav-link" href="index.php?halaman=pembelian">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fa fa-shopping-cart"></i>
           <span>Pembelian</span></a>
+      </li>
+
+       <!-- Divider -->
+       <hr class="sidebar-divider">
+
+      <li class="nav-item active">
+        <a class="nav-link" href="index.php?halaman=laporan_pembelian">
+          <i class="fa fa-file"></i>
+            <span>Laporan</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
       <li class="nav-item active">
         <a class="nav-link" href="index.php?halaman=pelanggan">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fa fa-user"></i>
           <span>Pelanggan</span></a>
       </li>
 
       <hr class="sidebar-divider d-none d-md-block">
       <li class="nav-item active">
         <a class="nav-link" href="index.php?halaman=logout">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fa fa-sign-out"></i>
           <span>Logout</span></a>
       </li>
 
@@ -136,6 +155,21 @@ if (!isset($_SESSION['admin'])) {
             else if($_GET['halaman']=="pembayaran"){
               include 'pembayaran.php';
             }
+            else if($_GET['halaman']=="laporan_pembelian"){
+              include 'laporan_pembelian.php';
+            }
+            else if($_GET['halaman']=="kategori"){
+              include 'kategori.php';
+            }
+            else if($_GET['halaman']=="tambahkategori"){
+              include 'tambahkategori.php';
+            }
+            else if($_GET['halaman']=="ubahkategori"){
+              include 'ubahkategori.php';
+            }
+            else if($_GET['halaman']=="hapuskategori"){
+              include 'hapuskategori.php';
+            }
           }else{
             include 'home.php';
           }
@@ -178,7 +212,7 @@ if (!isset($_SESSION['admin'])) {
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
+  
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->

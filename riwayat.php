@@ -15,7 +15,7 @@ if(!isset($_SESSION["pelanggan"]) OR empty($_SESSION["pelanggan"]))
 <html lang="en">
 
 <head>
-    <title>Febri's Shop</title>
+    <title>DFZ's Shop</title>
     <link rel="stylesheet" href="Admin/css/sb-admin-2.css">
 </head>
 <body>

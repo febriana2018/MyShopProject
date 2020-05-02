@@ -14,7 +14,7 @@ $koneksi = new mysqli("localhost", "root", "", "toko");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Febri's Shop - Login</title>
+  <title>DFZ's Shop - Login</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

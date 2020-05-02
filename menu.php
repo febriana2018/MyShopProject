@@ -18,5 +18,9 @@
         <a class="nav-link" href="checkout.php">Checkout</a>
       </li>      
     </ul>
+    <form action="pencarian.php" method="get" class="form-inline">
+      <input type="text" class="form-control" name="keyword">
+      <button class="btn btn-primary">Cari</button>
+    </form>
   </div>
 </nav>
